@@ -3,22 +3,23 @@ using System.Collections.Generic;
 
 namespace FileSplitter
 {
-    class Merger
+    public class Merger
     {
-        string path;
+        string filename;
         string[] partPaths;
 
-        public Merger(string prefixName, bool orderByName = true)
+        public Merger(string filenamePrefix, string searchDir, bool orderByName = true)
         {
-            this.path = "./" + prefixName;
+            this.filename = filenamePrefix;
             var partPaths = new List<string>();
 
-            foreach (var part in Directory.GetFiles("./"))
+            string tempFile = searchDir + filenamePrefix;
+            foreach (var part in Directory.GetFiles(searchDir))
             {
-                if (part.Length <= this.path.Length)
+                if (part.Length <= tempFile.Length)
                     continue;
 
-                if(part.Substring(0, this.path.Length) == this.path)
+                if(part.Substring(0, tempFile.Length) == tempFile)
                     partPaths.Add(part);
             }
 
@@ -31,21 +32,21 @@ namespace FileSplitter
         public Merger(string[] partPaths)
         {
             this.partPaths = partPaths;
-            this.path = this.partPaths[0].Remove(this.partPaths[0].Length - 1);
+            this.filename = this.partPaths[0].Remove(this.partPaths[0].Length - 1);
         }
 
-        public void Merge(IEnumerable<byte[]> parts)
+        public void Merge(IEnumerable<byte[]> parts, string path = "./")
         {
-            using (var stream = new FileStream(path, FileMode.Append))
+            using (var stream = new FileStream(path + filename, FileMode.Append))
             {
                 foreach (var part in parts)
                     stream.Write(part, 0, part.Length);
             }
         }
 
-        public void Merge()
+        public void Merge(string path = "./")
         {
-            using (var mainStream = new FileStream(path, FileMode.Append))
+            using (var mainStream = new FileStream(path + this.filename, FileMode.Append))
             {
                 foreach (var partPath in partPaths)
                 {

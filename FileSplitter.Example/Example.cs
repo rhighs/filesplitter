@@ -1,3 +1,7 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+
 namespace FileSplitter.Example
 {
     class Example
@@ -22,7 +26,7 @@ namespace FileSplitter.Example
             }
             else if (args[0] == "merge" && args[1] == "--prefix")
             {
-                var merger = new FileSplitter.Merger(args[2]);
+                var merger = new FileSplitter.Merger(args[2], "./");
                 merger.Merge();
             }
             else if (args[0] == "merge")

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FileSplitter
 {
-    class Splitter
+    public class Splitter
     {
         private string path;
         private FileStream stream;
