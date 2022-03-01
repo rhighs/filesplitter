@@ -1,11 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <Authors>skurob</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>RuffledRob.FileSplitter</PackageId>
+    <Authors>ruffledrob</Authors>
+    <Company>ruffledrob</Company>
+    <Description>Lazily split and merge files.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>Files, File, Split, Splitter, File Splitter</PackageTags>
+    <RepositoryUrl>https://github.com/skurob/filesplitter</RepositoryUrl>
   </PropertyGroup>
-
 </Project>
